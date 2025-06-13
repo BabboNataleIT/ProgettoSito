@@ -58,7 +58,7 @@
         </fieldset>
         <fieldset id="divOther" class="hidden">
             <legend>Please specify:</legend>
-            <input type="text" name="otherEquipment" id="otherEquipment" required>
+            <input type="text" name="otherEquipment" id="otherEquipment" placeholder='Please specify "other" equipment' required>
         </fieldset>
 
         <fieldset id="divTime">
@@ -75,8 +75,8 @@
         </fieldset>
 
         <fieldset id="divSerialNumber">
-            <legend>Serial number of the equipment :</legend>
-            <input type="text" name="serialNumber" id="serialNumber" required>
+            <legend>Serial Number:</legend>
+            <input type="text" name="serialNumber" id="serialNumber" placeholder="Please add the serial number" required>
         </fieldset>
 
         <fieldset id="necessity">
@@ -88,7 +88,7 @@
             <input type="radio" name="necessity" id="spareParts" required>
             <label for="spareParts">Spare Parts</label>
             <input type="radio" name="necessity" id="intervention" required>
-            <label for="spareParts">On site Intervention</label>
+            <label for="intervention">On-site Intervention</label>
         </fieldset>
 
         <fieldset id="divInfo" class="hidden">
@@ -168,12 +168,12 @@
             <label for="ricambioPlc3-3">Ricambio PLC 3-3</label>
         </fieldset>
         <fieldset id="nameUser">
-            <legend>Add your name</legend>
-            <input type="text" name="userName" id="userName">
+            <legend>User Name</legend>
+            <input type="text" name="userName" id="userName" placeholder="Please add your name" required>
         </fieldset>
         <fieldset id="phone">
-            <legend>Add your phone number</legend>
-            <input type="text" name="phoneNumber" id="phoneNumber">
+            <legend>Phone Number</legend>
+            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Please add your phone number">
         </fieldset>
         <fieldset><button type="submit" id="submitBtn">Send</button></fieldset>
     </form>
