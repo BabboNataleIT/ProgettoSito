@@ -84,23 +84,38 @@ button{
     font-size: 24px;
     cursor: pointer;
 }
-button#deselectBtn {
+/*button#deselectBtn {
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
     flex-shrink: 0;
+}*/
+#customer {
+  /* niente position relative qui */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra il contenuto orizzontalmente */
 }
-.customer-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 220px;
-    gap: 10px;
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  width: 280px; /* o la larghezza che preferisci */
+  box-sizing: border-box;
 }
 
 #customer input[type="text"] {
-    flex: 1;
-    text-align: center;
+  flex: 1; /* prende tutto lo spazio disponibile */
+  text-align: center;
+  margin-left: 27px;
+}
+
+#deselectBtn {
+  flex-shrink: 0; /* non si restringe */
+  margin-left: 80px;
+  margin-right: 10px;
+  width: 100px;
+  cursor: pointer;
 }
 button:hover {
     transition: background-color 0.3s;
