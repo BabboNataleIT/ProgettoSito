@@ -503,7 +503,13 @@
                         newSrc = "";
                     } else if (selectedPlc === 'plc3') {
                         newSrc = "";
+                    }else{
+                        newSrc = ""; // Default image
+                        alert('Please select an equipment type before fetching the manuals.');
                     }
+                }else{
+                    newSrc = ""; // Default image
+                    alert('Please select an equipment type before fetching the manuals.');
                 }
                 console.log(newSrc);
 
