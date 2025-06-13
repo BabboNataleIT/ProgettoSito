@@ -20,7 +20,10 @@
     <form id="information" action="submit-form.html" method="post">
         <fieldset id="customer">
             <legend>Customer Name</legend>
-            <input type="text" name="customerName" id="customerName" placeholder="Please add your customer's name">
+            <div class="customer-row">
+                <input type="text" name="customerName" id="customerName" placeholder="Please add your customer's name">
+                <button id="deselectBtn" type="button">Reset</button>
+            </div>
         </fieldset>
         <fieldset id="pin">
             <legend>PIN</legend>
@@ -34,7 +37,6 @@
             <label for="PLC">PLC</label>
             <input type="radio" name="equipment" value="other" id="OTHER">
             <label for="OTHER">Other</label>
-            <button id="deselectBtn" type="button">Reset</button>
         </fieldset>
 
         <fieldset id="divLgv-Adv" class="hidden">
