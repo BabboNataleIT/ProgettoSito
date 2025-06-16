@@ -2,6 +2,19 @@ $(document).ready(function () {
     let hiddenElements = $('.hidden');
     hiddenElements.hide(); // Nasconde tutti gli elementi con classe 'hidden' inizialmente
 
+    const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj'; 
+    const baseURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+    fetch(baseURL)
+      .then(res => res.text())
+      .then(data => {
+        const json = JSON.parse(data.substring(47, data.length - 2)); // Rimuove il wrapper JSONP
+        const row = json.table.rows[0].c;
+
+        document.getElementById('nome').value = row[0]?.v || '';
+        document.getElementById('email').value = row[1]?.v || '';
+        document.getElementById('telefono').value = row[2]?.v || '';
+      });
+
     let selectedLgv = "";
     let selectedEquipment = "";
     let selectedPlc = "";
@@ -78,7 +91,7 @@ $(document).ready(function () {
                     console.log('Files to upload after removal:', filesToUpload);
                 });
 
-                
+
                 if (file.type.startsWith('image/')) {
                     const img = $('<img>').attr('src', e.target.result).attr('alt', file.name);
                     mediaItem.append(img);
