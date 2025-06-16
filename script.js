@@ -362,8 +362,8 @@ $(document).ready(function () {
             $('#divInfo').hide();
         }
     }
-    function prefillForm(data) {
+    /*function prefillForm(data) {
         if (data.name) document.getElementById("equipments").value = data.name;
         if (data.serial) document.getElementById("serialNumber").value = data.serial;
-    }
+    }*/
 });
