@@ -485,9 +485,9 @@
 
             function showInfo() {
                 console.log('Funzione showInfo avviata');
-
+                let img = $('#qr-img');
                 $('#divInfo').show();
-
+                let check = true;
                 let newSrc = "";
 
                 if (selectedEquipment === 'lgv-agv') {
@@ -498,6 +498,7 @@
                     }else {
                         newSrc = ""; // Default image
                         alert('Please select a LGV/AGV type before fetching the manuals.');
+                        check = false;
                     }
                 } else if (selectedEquipment === 'plc') {
                     if (selectedPlc === 'plc1') {
@@ -509,14 +510,20 @@
                     }else{
                         newSrc = ""; // Default image
                         alert('Please select a PLC type before fetching the manuals.');
+                        check = false;
                     }
                 }else{
                     newSrc = ""; // Default image
                     alert('Please select an equipment type before fetching the manuals.');
+                    check = false;
                 }
                 console.log(newSrc);
 
-                $('#qr-img').attr('src', newSrc);
+                if(check){
+                    img.attr('src',newSrc);
+                }else{
+                    $('#divInfo').hide();
+                }
             }
         });
     </script>
