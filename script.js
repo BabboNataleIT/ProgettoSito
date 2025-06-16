@@ -4,16 +4,20 @@ $(document).ready(function () {
 
     const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj'; 
     const baseURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
-    fetch(baseURL)
-      .then(res => res.text())
-      .then(data => {
-        const json = JSON.parse(data.substring(47, data.length - 2)); // Rimuove il wrapper JSONP
-        const row = json.table.rows[0].c;
-
-        document.getElementById('nome').value = row[0]?.v || '';
-        document.getElementById('email').value = row[1]?.v || '';
-        document.getElementById('telefono').value = row[2]?.v || '';
-      });
+    // 1. Carica dati da Google Sheets (può essere pubblico o da Apps Script)
+  fetch('https://script.google.com/macros/s/tuo_endpoint_web_app/exec')
+    .then(res => res.json())
+    .then(data => {
+      // Salva il primo record nel localStorage
+      const userData = data[0]; // puoi anche filtrare o cercare per ID/email/etc.
+      localStorage.setItem("prefillData", JSON.stringify(userData));
+      prefillForm(userData); // opzionale: subito riempi la form
+    });
+    const stored = localStorage.getItem("prefillData");
+    if (stored) {
+      const data = JSON.parse(stored);
+      prefillForm(data);
+    }
 
     let selectedLgv = "";
     let selectedEquipment = "";
@@ -358,4 +362,8 @@ $(document).ready(function () {
             $('#divInfo').hide();
         }
     }
+    function prefillForm(data) {
+    if (data.name) document.getElementById("name").value = data.name;
+    if (data.email) document.getElementById("email").value = data.email;
+  }
 });
