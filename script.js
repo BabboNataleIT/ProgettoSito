@@ -78,6 +78,7 @@ $(document).ready(function () {
                     console.log('Files to upload after removal:', filesToUpload);
                 });
 
+                
                 if (file.type.startsWith('image/')) {
                     const img = $('<img>').attr('src', e.target.result).attr('alt', file.name);
                     mediaItem.append(img);
