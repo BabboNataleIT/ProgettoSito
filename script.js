@@ -2,7 +2,7 @@ $(document).ready(function () {
     let hiddenElements = $('.hidden');
     hiddenElements.hide(); // Nasconde tutti gli elementi con classe 'hidden' inizialmente
 
-    const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj';
+    /*const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj';
     const baseURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
     // 1. Carica dati da Google Sheets (può essere pubblico o da Apps Script)
     fetch(baseURL)
@@ -17,7 +17,12 @@ $(document).ready(function () {
     if (stored) {
         const data = JSON.parse(stored);
         prefillForm(data);
-    }
+    }*/
+
+    const params = new URLSearchParams(window.location.search);
+    const serial = params.get('serial');
+    const type = params.get('type');
+    prefillForm({ serial, type });
 
     let selectedLgv = "";
     let selectedEquipment = "";
@@ -362,8 +367,22 @@ $(document).ready(function () {
             $('#divInfo').hide();
         }
     }
-    /*function prefillForm(data) {
-        if (data.name) document.getElementById("equipments").value = data.name;
-        if (data.serial) document.getElementById("serialNumber").value = data.serial;
-    }*/
+    function prefillForm(data) {
+        if(serial) {
+            $('#serialNumber').val(serial);
+        }
+        if(type){
+            if(type === 'lgv-agv') {
+                $('#lgv-agv').prop('checked', true);
+                $('#divLgv-Adv').show();
+            }else if(type === 'plc') {
+                $('#plc').prop('checked', true);
+                $('#divPlc').show();
+            }else{
+                $('#divOther').val(type);
+                $('#other').prop('checked', true);
+            }
+            $('#equipments').val(type);
+        }
+    }
 });
