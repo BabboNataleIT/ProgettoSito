@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProgettoQR</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+    <div id="header">
+        <a href="https://www.e80group.com/it/" class="logo-link">
+            <img id="logo-img" src="img/LOGO E80 GROUP BLACK.jpg" alt="Logo" class="logo-image" />
+        </a>
+        <h1>Please add information</h1>
+    </div>
+    <form id="information" action="submit-form.html" method="post">
+        <fieldset id="customer">
+            <legend>Customer Name</legend>
+            <div class="input-wrapper">
+                <input type="text" name="customerName" id="customerName" placeholder="Please add your customer's name">
+                <button id="deselectBtn" type="button">Reset</button>
+            </div>
+        </fieldset>
+        <fieldset id="pin">
+            <legend>PIN</legend>
+            <input type="text" name="pinValue" id="pinValue" placeholder="Please add your PIN (if known)">
+        </fieldset>
+        <fieldset id="equipments">
+            <legend>Equipment</legend>
+            <input type="radio" name="equipment" value="lgv-agv" id="LGV-ADV" required>
+            <label for="LGV-ADV">LGV/AGV</label>
+            <input type="radio" name="equipment" value="plc" id="PLC">
+            <label for="PLC">PLC</label>
+            <input type="radio" name="equipment" value="other" id="OTHER">
+            <label for="OTHER">Other</label>
+        </fieldset>
+
+        <fieldset id="divLgv-Adv" class="hidden">
+            <legend>Please specify :</legend>
+            <input type="radio" name="divLgv-Adv" id="forche" required>
+            <label for="forche">Forche</label>
+            <input type="radio" name="divLgv-Adv" id="imballaggio" required>
+            <label for="imballaggio">Imballaggio</label>
+        </fieldset>
+
+        <fieldset id="divPlc" class="hidden">
+            <legend>Please specify :</legend>
+            <input type="radio" name="plc" id="plc1" required>
+            <label for="plc1">PLC 1</label>
+            <input type="radio" name="plc" id="plc2" required>
+            <label for="plc2">PLC 2</label>
+            <input type="radio" name="plc" id="plc3" required>
+            <label for="plc3">PLC 3</label>
+        </fieldset>
+        <fieldset id="divOther" class="hidden">
+            <legend>Please specify:</legend>
+            <input type="text" name="otherEquipment" id="otherEquipment" placeholder='Please specify "other" equipment'
+                required>
+        </fieldset>
+
+        <fieldset id="divTime">
+            <legend>Time and date of the event :</legend>
+            <input type="datetime-local" name="eventTime" id="eventTime" required>
+        </fieldset>
+
+        <fieldset id="divTicket">
+            <legend>Ticket already opened?</legend>
+            <input type="radio" name="ticket" id="yesTicket" value="yes" required>
+            <label for="yesTicket">Yes</label>
+            <input type="radio" name="ticket" id="noTicket" value="no" required>
+            <label for="noTicket">No</label>
+        </fieldset>
+
+        <fieldset id="divSerialNumber">
+            <legend>Serial Number:</legend>
+            <input type="text" name="serialNumber" id="serialNumber" placeholder="Please add the serial number"
+                required>
+        </fieldset>
+
+        <fieldset id="necessity">
+            <legend>What's your necessity?</legend>
+            <input type="radio" name="necessity" id="info" required>
+            <label for="info">Info</label>
+            <input type="radio" name="necessity" id="assistance" required>
+            <label for="assistance">Assistance</label>
+            <input type="radio" name="necessity" id="spareParts" required>
+            <label for="spareParts">Spare Parts</label>
+            <input type="radio" name="necessity" id="intervention" required>
+            <label for="intervention">On-site Intervention</label>
+        </fieldset>
+
+        <fieldset id="divInfo" class="hidden">
+            <legend>Info</legend>
+            <img id="qr-img" alt="QR code" class="qr-code-image" src="" />
+            <figure>
+                <a href="https://www.e80group.com/it/contatti/">
+                    <img id="phoneImg" src="img/iconaTelefono.png" alt="Phone Icon">
+                </a>
+                <figcaption style="margin-top: 20px">Assistance: +39 0522 76 20 11</figcaption>
+            </figure>
+            
+            <!--<img id="qr-img" src="img/qr-code.png" alt="QR Code" class="qr-code-image" />-->
+        </fieldset>
+
+        <fieldset id="divAssistance" class="hidden">
+            <legend>Description :</legend>
+            <textarea name="assistanceDetails" id="assistanceDetails"
+                placeholder="Please provide details about the assistance needed" required
+                style="width: 80%; min-width: 250px; padding: 10px; font-size: 1.1em; resize: vertical; overflow-y: auto; box-sizing: border-box;"
+                rows="3"></textarea>
+        </fieldset>
+
+        <fieldset id="mediaUploadSection" class="hidden-section">
+            <legend>Add Photos and Videos</legend>
+            <div class="media-upload-area" id="mediaUploadArea">
+                <label for="mediaUploadInput" id="mediaLabel">
+                    <p>Drag & drop photos/videos here or click to select</p>
+                    <input type="file" id="mediaUploadInput" multiple accept="image/*,video/*">
+                </label>
+            </div>
+            <!--<input type="file" id="mediaUploadInput" multiple accept="image/*,video/*" style="display: none;">
+            <div id="media-preview-container" style="display: none;"></div>-->
+        </fieldset>
+        <fieldset id="ricambiLgvForche" class="hidden">
+            <legend>Which one?:</legend>
+            <input type="radio" name="ricambiLgvForche" id="ricambioForche1" required>
+            <label for="ricambioForche1">Ricambio 1 Forche</label>
+            <input type="radio" name="ricambiLgvForche" id="ricambioForche2" required>
+            <label for="ricambioForche2">Ricambio 2 Forche</label>
+            <input type="radio" name="ricambiLgvForche" id="ricambioForche3" required>
+            <label for="ricambioForche3">Ricambio 3 Forche</label>
+            <input type="radio" name="ricambiLgvForche" id="ricambioForche4" required>
+            <label for="ricambioForche4">Ricambio 4 Forche</label>
+            <input type="radio" name="ricambiLgvForche" id="ricambioForche5" required>
+            <label for="ricambioForche5">Ricambio 5 Forche</label>
+            <input type="radio" name="ricambiLgvForche" id="ricambioForche6" required>
+            <label for="ricambioForche6">Ricambio 6 Forche</label>
+        </fieldset>
+        <fieldset id="ricambiLgvImballaggio" class="hidden">
+            <legend>Which one?:</legend>
+            <input type="radio" name="ricambiLgvImballaggio" id="ricambio-1" required>
+            <label for="ricambio-1">Ricambio 1 Imballaggio</label>
+            <input type="radio" name="ricambiLgvImballaggio" id="ricambio-2" required>
+            <label for="ricambio-2">Ricambio 2 Imballaggio</label>
+            <input type="radio" name="ricambiLgvImballaggio" id="ricambio-3" required>
+            <label for="ricambio-3">Ricambio 3 Imballaggio</label>
+            <input type="radio" name="ricambiLgvImballaggio" id="ricambio-4" required>
+            <label for="ricambio-4">Ricambio 4 Imballaggio</label>
+        </fieldset>
+
+        <fieldset id="ricambiPlc1" class="hidden">
+            <legend>Which one?:</legend>
+            <input type="radio" name="ricambiPlc1" id="ricambioPlc1-1" required>
+            <label for="ricambioPlc1-1">Ricambio PLC 1-1</label>
+            <input type="radio" name="ricambiPlc1" id="ricambioPlc1-2" required>
+            <label for="ricambioPlc1-2">Ricambio PLC 1-2</label>
+            <input type="radio" name="ricambiPlc1" id="ricambioPlc1-3" required>
+            <label for="ricambioPlc1-3">Ricambio PLC 1-3</label>
+        </fieldset>
+        <fieldset id="ricambiPlc2" class="hidden">
+            <legend>Which one?:</legend>
+            <input type="radio" name="ricambiPlc2" id="ricambioPlc2-1" required>
+            <label for="ricambioPlc2-1">Ricambio PLC 2-1</label>
+            <input type="radio" name="ricambiPlc2" id="ricambioPlc2-2" required>
+            <label for="ricambioPlc2-2">Ricambio PLC 2-2</label>
+            <input type="radio" name="ricambiPlc2" id="ricambioPlc2-3" required>
+            <label for="ricambioPlc2-3">Ricambio PLC 2-3</label>
+        </fieldset>
+        <fieldset id="ricambiPlc3" class="hidden">
+            <legend>Which one?:</legend>
+            <input type="radio" name="ricambiPlc3" id="ricambioPlc3-1" required>
+            <label for="ricambioPlc3-1">Ricambio PLC 3-1</label>
+            <input type="radio" name="ricambiPlc3" id="ricambioPlc3-2" required>
+            <label for="ricambioPlc3-2">Ricambio PLC 3-2</label>
+            <input type="radio" name="ricambiPlc3" id="ricambioPlc3-3" required>
+            <label for="ricambioPlc3-3">Ricambio PLC 3-3</label>
+        </fieldset>
+        <fieldset id="nameUser">
+            <legend>User Name</legend>
+            <input type="text" name="userName" id="userName" placeholder="Please add your name" required>
+        </fieldset>
+        <fieldset id="phone">
+            <legend>Phone Number</legend>
+            <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="Please add your phone number">
+        </fieldset>
+        <fieldset><button type="submit" id="submitBtn">Send</button></fieldset>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
