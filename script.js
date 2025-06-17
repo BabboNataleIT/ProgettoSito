@@ -147,8 +147,8 @@ $(document).ready(function () {
         checkTicket = $(this).val();
         $('#divTicket .ticketPrompt, #divTicket #ticketNumber, #divTicket .ticketSeparator').remove();
         if (checkTicket === 'yes') {
-            let text = "Please provide the ticket number:";
-            $('#divTicket').append('<hr class="ticketSeparator"><p class="ticketPrompt">' + text + '</p><input type="text" name="ticketNumber" id="ticketNumber" required>');
+            let text = "Please provide the ticket num:";
+            $('#divTicket').append('<hr class="ticketSeparator">'+"Ticket Number:"+'<p class="ticketPrompt"></p><input type="text" name="ticketNumber" id="ticketNumber" placeholder="'+text+'"required>');
         }
     });
 
