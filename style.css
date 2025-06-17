@@ -237,7 +237,7 @@ button:hover {
     margin: 5px 0 0;
     color: #666;
 }
-input[type="text"]{
+input[type="text"],input[type="tel"]{
     min-width: 220px;
     text-align: center;
 }
