@@ -38,9 +38,9 @@ $(document).ready(function () {
     let filesToUpload = []; // Array per memorizzare gli oggetti File da caricare
 
     // Trigger per l'apertura della finestra di selezione file quando si clicca sull'area di upload
-    /*mediaUploadArea.on('click', function() {
+    mediaUploadArea.on('click', function() {
         mediaUploadInput.trigger('click');
-    });*/
+    });
 
     // Gestione dei file selezionati dall'input
     mediaUploadInput.on('change', function (event) {
