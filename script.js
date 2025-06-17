@@ -147,9 +147,10 @@ $(document).ready(function () {
         checkTicket = $(this).val();
         $('#divTicket .ticketPrompt, #divTicket #ticketNumber, #divTicket .ticketSeparator').remove();
         if (checkTicket === 'yes') {
-            let text = "Please provide the ticket num:";
-            $('#divTicket').append('<hr class="ticketSeparator">'+"Ticket Number:"+'<p class="ticketPrompt"></p><input type="text" name="ticketNumber" id="ticketNumber" placeholder="'+text+'"required>');
+            let text = "Ticket Number:";
+            $('#divTicket').append('<hr class="ticketSeparator">'+text+'<p class="ticketPrompt"></p><input type="text" name="ticketNumber" id="ticketNumber" placeholder="Please provide the ticket number:" required>');
         }
+
     });
 
     // Gestione del numero di serie
