@@ -114,13 +114,16 @@
                 rows="3"></textarea>
         </fieldset>
 
-        <fieldset id="mediaUploadSection" class="hidden">
+        <fieldset id="mediaUploadSection" class="hidden-section">
             <legend>Add Photos and Videos</legend>
             <div class="media-upload-area" id="mediaUploadArea">
-                <p>Drag & drop photos/videos here or click to select</p>
+                <label for="mediaUploadInput" id="mediaLabel">
+                    <p>Drag & drop photos/videos here or click to select</p>
+                    <input type="file" id="mediaUploadInput" multiple accept="image/*,video/*">
+                </label>
             </div>
-            <input type="file" id="mediaUploadInput" multiple accept="image/*,video/*" style="display: none;">
-            <div id="media-preview-container" style="display: none;"></div>
+            <!--<input type="file" id="mediaUploadInput" multiple accept="image/*,video/*" style="display: none;">
+            <div id="media-preview-container" style="display: none;"></div>-->
         </fieldset>
         <fieldset id="ricambiLgvForche" class="hidden">
             <legend>Which one?:</legend>

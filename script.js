@@ -38,9 +38,9 @@ $(document).ready(function () {
     let filesToUpload = []; // Array per memorizzare gli oggetti File da caricare
 
     // Trigger per l'apertura della finestra di selezione file quando si clicca sull'area di upload
-    mediaUploadArea.on('click', function() {
+    /*mediaUploadArea.on('click', function() {
         mediaUploadInput.trigger('click');
-    });
+    });*/
 
     // Gestione dei file selezionati dall'input
     mediaUploadInput.on('change', function (event) {
@@ -172,7 +172,7 @@ $(document).ready(function () {
         // Nascondi tutte le sezioni di necessità
         $('#divInfo').hide();
         $('#divAssistance').hide();
-        $('#mediaUploadSection').hide(); // Nuova linea: nascondi la sezione media
+        $('#mediaUploadSection').addClass('hidden-section'); // Nuova linea: nascondi la sezione media
         $('#ricambiLgvForche').hide();
         $('#ricambiLgvImballaggio').hide();
         $('#ricambiPlc1').hide();
@@ -184,8 +184,11 @@ $(document).ready(function () {
             showInfo();
             //$('#divInfo').show();
         } else if (currentNecessity === 'assistance') {
+            let media = $('#mediaUploadSection');
             $('#divAssistance').show(); // Mostra la textarea di assistenza
-            $('#mediaUploadSection').show(); // Nuova linea: mostra la sezione media
+            media.removeClass('hidden-section');
+            if(media){console.log('Media section is visible');}else{console.log('Media section is not visible');}
+            console.log(media.html());
         } else if (currentNecessity === 'spareParts') {
             showSpareParts();
         }

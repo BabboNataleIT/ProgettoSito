@@ -1,15 +1,19 @@
-body{
-    background-color: white/*#f0f0f0*/;
+body {
+    background-color: white
+        /*#f0f0f0*/
+    ;
     font-family: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif';
     font-size: 16px;
     margin: 0;
     padding: 20px;
 }
-#header{
+
+#header {
     text-align: center;
     padding-bottom: 25px;
 }
-fieldset{
+
+fieldset {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 10px;
@@ -26,37 +30,46 @@ fieldset{
     justify-content: center;
     align-items: center;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}/*
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/*
 #equipments{
     justify-content: space-around;
     align-items: center;
     margin-top: 20px;
 }*/
-#logo-img{
-    display: block;        /* rende il margin:auto effettivo */
+#logo-img {
+    display: block;
+    /* rende il margin:auto effettivo */
     width: 300px;
-    height: auto;          /* mantiene le proporzioni originali */
-    margin: 10px auto 0;   /* 10px in alto, margini orizzontali auto, 0 in basso */
+    height: auto;
+    /* mantiene le proporzioni originali */
+    margin: 10px auto 0;
+    /* 10px in alto, margini orizzontali auto, 0 in basso */
 }
-.logo-link{
+
+.logo-link {
     display: inline-block;
     justify-content: center;
     padding-top: 10px;
 }
-#divInfo{
+
+#divInfo {
     justify-content: space-around;
     align-items: center;
     font-weight: bold;
     text-decoration: solid underline;
 }
-#qr-img{
+
+#qr-img {
     width: 200px;
     height: 200px;
     position: relative;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-h1{
+
+h1 {
     padding-top: 25px;
     max-width: 600px;
     margin-left: auto;
@@ -68,7 +81,8 @@ h1{
     text-decoration: dotted underline;
     color: BLACK;
 }
-button{
+
+button {
     /*display: flex;
     justify-content: center;
     align-items: center;*/
@@ -78,12 +92,13 @@ button{
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     color: white;
     border: none;
     font-size: 24px;
     cursor: pointer;
 }
+
 /*button#deselectBtn {
     margin-top: 10px;
     margin-right: 10px;
@@ -91,46 +106,61 @@ button{
     flex-shrink: 0;
 }*/
 #customer {
-  /* niente position relative qui */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centra il contenuto orizzontalmente */
+    /* niente position relative qui */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* centra il contenuto orizzontalmente */
 }
 
 .input-wrapper {
-  display: flex;
-  align-items: center;
-  width: 280px; /* o la larghezza che preferisci */
-  box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 280px;
+    /* o la larghezza che preferisci */
+    box-sizing: border-box;
 }
 
 #customer input[type="text"] {
-  flex: 1; /* prende tutto lo spazio disponibile */
-  text-align: center;
-  margin-left: 27px;
+    flex: 1;
+    /* prende tutto lo spazio disponibile */
+    text-align: center;
+    margin-left: 27px;
 }
 
 #deselectBtn {
-  flex-shrink: 0; /* non si restringe */
-  margin-left: 80px;
-  margin-right: 10px;
-  width: 100px;
-  cursor: pointer;
+    flex-shrink: 0;
+    /* non si restringe */
+    margin-left: 80px;
+    margin-right: 10px;
+    width: 100px;
+    cursor: pointer;
 }
+
 button:hover {
     transition: background-color 0.3s;
     transition: box-shadow 0.2s;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
     background-color: #fa591e;
     cursor: pointer;
     font-style: bold;
     text-decoration: underline;
 }
+
 .hidden {
     display: none;
 }
 
-#text:div{
+.hidden-section {
+    display: none;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+}
+
+#text:div {
     font-size: 16px;
     color: #333;
     line-height: 1.5;
@@ -138,17 +168,18 @@ button:hover {
     text-align: justify;
 }
 
-#qr-code-image{
+#qr-code-image {
     width: 200px;
     height: 200px;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
 /* Stili per l'area di caricamento media */
 .media-upload-area {
     border: 2px dashed #ccc;
@@ -159,30 +190,48 @@ button:hover {
     margin-bottom: 20px;
     color: #555;
     transition: border-color 0.3s ease;
-    position: relative; /* Cruciale: permette di posizionare l'input file al suo interno */
-    overflow: hidden; /* Assicura che l'input file non "sfori" dall'area */
+    position: relative;
+    /* Cruciale: permette di posizionare l'input file al suo interno */
+    overflow: hidden;
+    /* Assicura che l'input file non "sfori" dall'area */
 }
+
 .media-upload-area:hover {
     border-color: #007bff;
     color: #007bff;
 }
 
 #mediaUploadInput {
-    position: absolute; /* Posizionamento assoluto rispetto a .media-upload-area */
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+    z-index: -1;
+}
+
+#pmediaUploadInput {
+    position: absolute;
+    /* Posizionamento assoluto rispetto a .media-upload-area */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0; /* Lo rende completamente trasparente */
-    cursor: pointer; /* Indica che è cliccabile */
-    z-index: 10; /* Assicura che sia sopra il testo dell'area */
+    opacity: 0;
+    /* Lo rende completamente trasparente */
+    cursor: pointer;
+    /* Indica che è cliccabile */
+    z-index: 10;
+    /* Assicura che sia sopra il testo dell'area */
 }
 
 /* Stili per il contenitore delle anteprime */
 #media-preview-container {
-    display: flex; /* Utilizza flexbox per le anteprime */
-    flex-wrap: wrap; /* Le anteprime andranno a capo se non c'è spazio */
-    gap: 10px; /* Spazio tra le anteprime */
+    display: flex;
+    /* Utilizza flexbox per le anteprime */
+    flex-wrap: wrap;
+    /* Le anteprime andranno a capo se non c'è spazio */
+    gap: 10px;
+    /* Spazio tra le anteprime */
     margin-top: 15px;
 }
 
@@ -192,18 +241,23 @@ button:hover {
     border: 1px solid #ddd;
     padding: 5px;
     text-align: center;
-    max-width: 150px; /* Larghezza massima per le anteprime */
+    max-width: 150px;
+    /* Larghezza massima per le anteprime */
     box-sizing: border-box;
     border-radius: 5px;
-    overflow: hidden; /* Nasconde ciò che esce dai bordi */
+    overflow: hidden;
+    /* Nasconde ciò che esce dai bordi */
 }
 
 .media-preview-item img,
 .media-preview-item video {
-    max-width: 100%; /* Le immagini/video riempiranno lo spazio del contenitore */
+    max-width: 100%;
+    /* Le immagini/video riempiranno lo spazio del contenitore */
     height: auto;
-    display: block; /* Rimuove spazi extra sotto l'immagine */
-    margin: 0 auto; /* Centra l'immagine/video */
+    display: block;
+    /* Rimuove spazi extra sotto l'immagine */
+    margin: 0 auto;
+    /* Centra l'immagine/video */
     border-radius: 3px;
 }
 
@@ -223,21 +277,34 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 1; /* Allinea il testo verticalmente */
+    line-height: 1;
+    /* Allinea il testo verticalmente */
     padding: 0;
     opacity: 0.8;
     transition: opacity 0.2s ease;
 }
+
 .media-preview-item .remove-btn:hover {
     opacity: 1;
 }
+
 .media-preview-item p {
     font-size: 0.8em;
-    word-break: break-all; /* Spezza le parole lunghe */
+    word-break: break-all;
+    /* Spezza le parole lunghe */
     margin: 5px 0 0;
     color: #666;
 }
-input[type="text"],input[type="tel"]{
+
+input[type="text"],
+input[type="tel"] {
     min-width: 220px;
     text-align: center;
+}
+
+#mediaLabel {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
 }
