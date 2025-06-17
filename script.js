@@ -372,7 +372,7 @@ $(document).ready(function () {
             $('#serialNumber').val(serial);
         }
         if(type){
-            if(type === 'lgv-agv') {
+            if(type.contains('lgv') || type.contains('agv')) {
                 $('#lgv-agv').prop('checked', true);
                 $('#divLgv-Adv').show();
             }else if(type === 'plc') {
