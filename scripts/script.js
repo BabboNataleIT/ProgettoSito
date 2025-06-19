@@ -2,7 +2,7 @@ $(document).ready(function () {
     let hiddenElements = $('.hidden');
     hiddenElements.hide(); // Nasconde tutti gli elementi con classe 'hidden' inizialmente
 
-    /*const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj';
+    const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj';
     const baseURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
     // 1. Carica dati da Google Sheets (può essere pubblico o da Apps Script)
     fetch(baseURL)
@@ -17,7 +17,7 @@ $(document).ready(function () {
     if (stored) {
         const data = JSON.parse(stored);
         prefillForm(data);
-    }*/
+    }
 
     /*const params = new URLSearchParams(window.location.search);
     const serial = params.get('serial');
