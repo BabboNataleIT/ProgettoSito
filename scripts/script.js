@@ -37,6 +37,8 @@ $(document).ready(function () {
     const mediaPreviewContainer = $('#media-preview-container');
     let filesToUpload = []; // Array per memorizzare gli oggetti File da caricare
 
+    localStorage.setItem("customerName", $("#customerName").val());
+
     // Trigger per l'apertura della finestra di selezione file quando si clicca sull'area di upload
     /*mediaUploadArea.on('click', function() {
         mediaUploadInput.trigger('click');
