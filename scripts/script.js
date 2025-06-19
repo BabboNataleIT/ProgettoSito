@@ -140,6 +140,7 @@ $(document).ready(function () {
         } else if (selectedEquipment === 'other') {
             $('#divOther').show();
         }
+        localStorage.setItem("equipment",selectedEquipment);
     });
 
     // Gestione del ticket
@@ -149,6 +150,7 @@ $(document).ready(function () {
         if (checkTicket === 'yes') {
             let text = "Ticket Number:";
             $('#divTicket').append('<hr class="ticketSeparator">'+'<p class="ticketPrompt">'+text+'</p><input type="text" name="ticketNumber" id="ticketNumber" placeholder="Please provide the ticket number:" required>');
+            localStorage.setItem("ticket",$("#ticketNumber").val());
         }
 
     });
@@ -159,6 +161,7 @@ $(document).ready(function () {
         if (serialNumber.length < 5) {
             alert('Serial number must be at least 5 characters long.');
         }
+        localStorage.setItem("serial",serialNumber);
     });
 
     $('#pinValue').on('change', function () {
@@ -166,6 +169,7 @@ $(document).ready(function () {
         if (x.length < 4) {
             alert('Pin must be at least 4 characters long.')
         }
+        localStorage.setItem("pin",x);
     })
 
     // Gestione della "necessity"
@@ -193,6 +197,7 @@ $(document).ready(function () {
         } else if (currentNecessity === 'spareParts') {
             showSpareParts();
         }
+        localStorage.setItem("necessity",currentNecessity);
     });
 
     // Listener per la textarea di assistenza
@@ -210,6 +215,7 @@ $(document).ready(function () {
         if (currentNecessity === 'spareParts') {
             showSpareParts();
         }
+        localStorage.setItem("type",selectedLgv);
     });
 
     $('input[name="plc"]').change(function () {
@@ -228,6 +234,7 @@ $(document).ready(function () {
         if (currentNecessity === 'spareParts') {
             showSpareParts();
         }
+        localStorage.setItem("type",selectedPlc);
     });
 
     // Modifica per la gestione del submit (inclusi i file)
@@ -252,6 +259,11 @@ $(document).ready(function () {
             } else {
                 console.log(pair[0] + ': ' + pair[1]);
             }
+        }
+
+        for (let key in localStorage) {
+            console.log(`${key}: ${localStorage.getItem(key)}`);
+            formData.append(key, localStorage.getItem(key)); // Aggiungi i dati del localStorage a FormData
         }
 
         // In un'applicazione reale, invieresti formData al server tramite AJAX:
@@ -304,6 +316,7 @@ $(document).ready(function () {
         currentNecessity = "";
         checkTicket = "";
         assistanceDetails = "";
+        localStorage.clear(); // Pulisce il localStorage
     });
 
     function showSpareParts() {
@@ -388,5 +401,11 @@ $(document).ready(function () {
             }
             $('#equipments').val(type);
         }
+    }
+
+    $("#customerName").on('change', save());
+
+    function save(){
+    localStorage.setItem(this.id,this.value);
     }
 });
