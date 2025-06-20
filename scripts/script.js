@@ -2,6 +2,8 @@ $(document).ready(function () {
     let hiddenElements = $('.hidden');
     hiddenElements.hide(); // Nasconde tutti gli elementi con classe 'hidden' inizialmente
 
+    localStorage.clear(); // Pulisce il localStorage all'inizio
+
     const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj';
     const baseURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
     // 1. Carica dati da Google Sheets (può essere pubblico o da Apps Script)
