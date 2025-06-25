@@ -155,6 +155,10 @@ $(document).ready(function () {
             let text = "Ticket Number:";
             $('#divTicket').append('<hr class="ticketSeparator">'+'<p class="ticketPrompt">'+text+'</p><input type="text" name="ticketNumber" id="ticketNumber" placeholder="Please provide the ticket number:" required>');
             localStorage.setItem("ticket",$("#ticketNumber").val());
+        }else if (checkTicket === 'no') {
+                const ticket = "XXXXXXXXX";
+                $('#divTicket').append('<hr class="ticketSeparator">'+'<p class="ticketPrompt">Your ticket number is:</p><input type="text" name="ticketNumber" id="ticketNumber" value="'+ticket+'" readonly>');
+                localStorage.setItem("ticket",ticket);
         }
 
     });
@@ -293,7 +297,7 @@ $(document).ready(function () {
 
         // Per ora, simuliamo il successo e reindirizziamo
         alert('Data and files prepared for submission (client-side only). Check console for details.');
-        window.location.href = 'submit-form.html'; // Reindirizza comunque per il tuo flusso attuale
+        //window.location.href = 'submit-form.html'; // Reindirizza comunque per il tuo flusso attuale
     });
 
     // Reset completo del modulo
