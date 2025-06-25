@@ -136,7 +136,11 @@ button {
     width: 100px;
     cursor: pointer;
 }
-
+#map {
+      height: 500px;
+      width: 100%;
+}
+#selected-location { margin-top: 10px; font-weight: bold; }
 button:hover {
     transition: background-color 0.3s;
     transition: box-shadow 0.2s;

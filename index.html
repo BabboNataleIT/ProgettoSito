@@ -8,6 +8,7 @@
     <title>Progetto</title>
     <link rel="icon" type="image/png" href="img/AquilaArancio200px.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -32,8 +33,8 @@
         </fieldset>
         <fieldset id="equipments">
             <legend>Equipment</legend>
-            <input type="radio" name="equipment" value="lgv-agv" id="LGV-ADV" required>
-            <label for="LGV-ADV">LGV/AGV</label>
+            <input type="radio" name="equipment" value="lgv-agv" id="lgv-agv" required>
+            <label for="lgv-agv">LGV/AGV</label>
             <input type="radio" name="equipment" value="plc" id="PLC">
             <label for="PLC">PLC</label>
             <input type="radio" name="equipment" value="other" id="OTHER">
@@ -179,6 +180,11 @@
             <input type="radio" name="ricambiPlc3" id="ricambioPlc3-3" required>
             <label for="ricambioPlc3-3">Ricambio PLC 3-3</label>
         </fieldset>
+        <fieldset id="mappa" class="hidden">
+            <legend>Select a location</legend>
+            <div id="map"></div>
+            <div id="selected-location">No location selected.</div>
+        </fieldset>
         <fieldset id="nameUser">
             <legend>User Name</legend>
             <input type="text" name="userName" id="userName" placeholder="Please add your name" required>
@@ -191,5 +197,6 @@
     </form>
 
     <script src="scripts/script.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
 </html>

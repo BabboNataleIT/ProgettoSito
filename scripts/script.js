@@ -3,7 +3,18 @@ $(document).ready(function () {
     hiddenElements.hide(); // Nasconde tutti gli elementi con classe 'hidden' inizialmente
 
     localStorage.clear(); // Pulisce il localStorage all'inizio
-
+    const map = L.map('map',{
+        center: [42.36,12.02], // Centro della mappa
+        zoom: 5, // Livello di zoom iniziale
+        minZoom: 4,
+        maxZoom: 16
+    });
+    const customIcon = L.icon({
+        iconUrl: 'img/oie_transaparent_mini.png',  // or link to an image
+        iconSize: [32, 32],        // size of the icon
+        iconAnchor: [16, 32],      // point of the icon which will correspond to marker's location
+        popupAnchor: [0, -32]      // point from which the popup should open relative to the iconAnchor
+    });
     const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj';
     const baseURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
     // 1. Carica dati da Google Sheets (può essere pubblico o da Apps Script)
@@ -144,7 +155,7 @@ $(document).ready(function () {
         } else if (selectedEquipment === 'other') {
             $('#divOther').show();
         }
-        localStorage.setItem("equipment",selectedEquipment);
+        localStorage.setItem("equipment", selectedEquipment);
     });
 
     // Gestione del ticket
@@ -153,12 +164,12 @@ $(document).ready(function () {
         $('#divTicket .ticketPrompt, #divTicket #ticketNumber, #divTicket .ticketSeparator').remove();
         if (checkTicket === 'yes') {
             let text = "Ticket Number:";
-            $('#divTicket').append('<hr class="ticketSeparator">'+'<p class="ticketPrompt">'+text+'</p><input type="text" name="ticketNumber" id="ticketNumber" placeholder="Please provide the ticket number:" required>');
-            localStorage.setItem("ticket",$("#ticketNumber").val());
-        }else if (checkTicket === 'no') {
-                const ticket = "XXXXXXXXX";
-                $('#divTicket').append('<hr class="ticketSeparator">'+'<p class="ticketPrompt">Your ticket number is:</p><input type="text" name="ticketNumber" id="ticketNumber" value="'+ticket+'" readonly>');
-                localStorage.setItem("ticket",ticket);
+            $('#divTicket').append('<hr class="ticketSeparator">' + '<p class="ticketPrompt">' + text + '</p><input type="text" name="ticketNumber" id="ticketNumber" placeholder="Please provide the ticket number:" required>');
+            localStorage.setItem("ticket", $("#ticketNumber").val());
+        } else if (checkTicket === 'no') {
+            const ticket = "XXXXXXXXX";
+            $('#divTicket').append('<hr class="ticketSeparator">' + '<p class="ticketPrompt">Your ticket number is:</p><input type="text" name="ticketNumber" id="ticketNumber" value="' + ticket + '" readonly>');
+            localStorage.setItem("ticket", ticket);
         }
 
     });
@@ -169,7 +180,7 @@ $(document).ready(function () {
         if (serialNumber.length < 5) {
             alert('Serial number must be at least 5 characters long.');
         }
-        localStorage.setItem("serial",serialNumber);
+        localStorage.setItem("serial", serialNumber);
     });
 
     $('#pinValue').on('change', function () {
@@ -177,10 +188,13 @@ $(document).ready(function () {
         if (x.length < 4) {
             alert('Pin must be at least 4 characters long.')
         }
-        localStorage.setItem("pin",x);
+        localStorage.setItem("pin", x);
     })
 
     // Gestione della "necessity"
+    // Array to keep track of intervention markers
+    let interventionMarkers = [];
+
     $('input[name="necessity"]').change(function () {
         // Nascondi tutte le sezioni di necessità
         $('#divInfo').hide();
@@ -191,8 +205,10 @@ $(document).ready(function () {
         $('#ricambiPlc1').hide();
         $('#ricambiPlc2').hide();
         $('#ricambiPlc3').hide();
+        $('#mappa').hide();
 
         currentNecessity = $(this).attr('id');
+        let tileLayer;
         if (currentNecessity === 'info') {
             showInfo();
             //$('#divInfo').show();
@@ -200,12 +216,46 @@ $(document).ready(function () {
             let media = $('#mediaUploadSection');
             $('#divAssistance').show(); // Mostra la textarea di assistenza
             media.removeClass('hidden-section');
-            if(media){console.log('Media section is visible');}else{console.log('Media section is not visible');}
+            if (media) { console.log('Media section is visible'); } else { console.log('Media section is not visible'); }
             console.log(media.html());
         } else if (currentNecessity === 'spareParts') {
             showSpareParts();
+        } else if (currentNecessity === 'intervention') {
+            // Remove existing intervention markers to avoid duplicates
+            if (interventionMarkers.length > 0) {
+                interventionMarkers.forEach(marker => map.removeLayer(marker));
+                interventionMarkers = [];
+            }
+            if (tileLayer) {
+                map.removeLayer(tileLayer);
+            }
+            tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            const locations = [
+                { name: 'Barilla', lat: 44.827752, lng: 10.370643 },
+                { name: 'Nestle', lat: 45.4104705, lng: 9.1534948 },
+                { name: 'Perrier', lat: 44.837789, lng: 10.327157 }
+            ];
+            locations.forEach(loc => {
+                const marker = L.marker([loc.lat, loc.lng]/*,{icon: customIcon}*/).addTo(map)
+                    .bindPopup(loc.name)
+                    .on('click', () => {
+                        document.getElementById('selected-location').textContent = `Selected: ${loc.name}`;
+                    });
+                interventionMarkers.push(marker);
+            });
+            const group = L.featureGroup(interventionMarkers);
+            map.fitBounds(group.getBounds().pad(0.2));
+
+            $('#mappa').show();
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100); // piccolo delay per assicurarsi che l'elemento sia effettivamente visibile
+
         }
-        localStorage.setItem("necessity",currentNecessity);
+        localStorage.setItem("necessity", currentNecessity);
     });
 
     // Listener per la textarea di assistenza
@@ -223,7 +273,7 @@ $(document).ready(function () {
         if (currentNecessity === 'spareParts') {
             showSpareParts();
         }
-        localStorage.setItem("type",selectedLgv);
+        localStorage.setItem("type", selectedLgv);
     });
 
     $('input[name="plc"]').change(function () {
@@ -242,7 +292,7 @@ $(document).ready(function () {
         if (currentNecessity === 'spareParts') {
             showSpareParts();
         }
-        localStorage.setItem("type",selectedPlc);
+        localStorage.setItem("type", selectedPlc);
     });
 
     // Modifica per la gestione del submit (inclusi i file)
@@ -393,17 +443,17 @@ $(document).ready(function () {
         }
     }
     function prefillForm(data) {
-        if(serial) {
+        if (serial) {
             $('#serialNumber').val(serial);
         }
-        if(type){
-            if(type.includes('lgv') || type.includes('agv')) {
+        if (type) {
+            if (type.includes('lgv') || type.includes('agv')) {
                 $('#lgv-agv').prop('checked', true);
                 $('#divLgv-Adv').show();
-            }else if(type === 'plc') {
+            } else if (type === 'plc') {
                 $('#plc').prop('checked', true);
                 $('#divPlc').show();
-            }else{
+            } else {
                 $('#divOther').val(type);
                 $('#other').prop('checked', true);
             }
@@ -411,9 +461,9 @@ $(document).ready(function () {
         }
     }
 
-    $("#customerName").on('change', save());
+    $("#customerName").on('change', save);
 
-    function save(){
-    localStorage.setItem(this.id,this.value);
+    function save() {
+        localStorage.setItem(this.id, this.value);
     }
 });
