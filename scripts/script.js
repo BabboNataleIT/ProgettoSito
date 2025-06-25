@@ -236,13 +236,16 @@ $(document).ready(function () {
             const locations = [
                 { name: 'Barilla', lat: 44.827752, lng: 10.370643 },
                 { name: 'Nestle', lat: 45.4104705, lng: 9.1534948 },
-                { name: 'Perrier', lat: 44.837789, lng: 10.327157 }
+                { name: 'Perrier', lat: 44.837789, lng: 10.327157 },
+                {name: 'Coca-Cola (MI)', lat:45.4779734, lng: 9.1450149},
+                {name: 'Coca-Cola (NO)', lat:45.18109000, lng: 11.06008000}
             ];
             locations.forEach(loc => {
                 const marker = L.marker([loc.lat, loc.lng]/*,{icon: customIcon}*/).addTo(map)
                     .bindPopup(loc.name)
                     .on('click', () => {
                         document.getElementById('selected-location').textContent = `Selected: ${loc.name}`;
+                        localStorage.setItem("selectedLocation", loc.name);
                     });
                 interventionMarkers.push(marker);
             });
@@ -308,7 +311,7 @@ $(document).ready(function () {
         filesToUpload.forEach((file, index) => {
             formData.append(`mediaFiles[${index}]`, file); // 'mediaFiles' sarà il nome del campo sul server
         });
-
+        formData.append('selectedLocation', localStorage.getItem("selectedLocation") || ""); // Aggiungi la location selezionata
         // Per debug, puoi stampare i dati (esclusi i contenuti dei file)
         console.log('Form data to be submitted:');
         for (let pair of formData.entries()) {
