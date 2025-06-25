@@ -4,8 +4,13 @@ $(document).ready(function () {
     $("#type").text(localStorage.getItem("type"));
     $("#serialNumber").text(localStorage.getItem("serial"));
     $("#necessity").text(localStorage.getItem("necessity"));
+    location = localStorage.getItem("selectedLocation")
+    if(!location=== ""){
+        $("#location").text(location);
+    }
     console.log(localStorage.getItem("customerName"));
     console.log(localStorage.getItem("type"));
     console.log(localStorage.getItem("serial"));
     console.log(localStorage.getItem("necessity"));
+    console.log(location);
 });
