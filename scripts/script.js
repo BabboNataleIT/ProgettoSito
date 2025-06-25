@@ -10,8 +10,8 @@ $(document).ready(function () {
         maxZoom: 16
     });
     const customIcon = L.icon({
-        iconUrl: 'img/oie_transaparent_mini.png',  // or link to an image
-        iconSize: [32, 32],        // size of the icon
+        iconUrl: "img/oie_transparent_mini.png",  // or link to an image
+        iconSize: [50, 50],        // size of the icon
         iconAnchor: [16, 32],      // point of the icon which will correspond to marker's location
         popupAnchor: [0, -32]      // point from which the popup should open relative to the iconAnchor
     });
@@ -241,12 +241,19 @@ $(document).ready(function () {
                 {name: 'Coca-Cola (NO)', lat:45.18109000, lng: 11.06008000}
             ];
             locations.forEach(loc => {
-                const marker = L.marker([loc.lat, loc.lng]/*,{icon: customIcon}*/).addTo(map)
+                const marker = L.marker([loc.lat, loc.lng],{icon: customIcon}).addTo(map)
                     .bindPopup(loc.name)
                     .on('click', () => {
                         document.getElementById('selected-location').textContent = `Selected: ${loc.name}`;
                         localStorage.setItem("selectedLocation", loc.name);
                     });
+                    marker.on('mousehover',function(){
+                        this.attr('style','cursor: pointer;border: 4px solid white;');
+                    });
+                    marker.on('mouseleave',function(){
+                        this.attr('style','border: none;');
+                    });
+                    marker.riseOnHover(true);
                 interventionMarkers.push(marker);
             });
             const group = L.featureGroup(interventionMarkers);

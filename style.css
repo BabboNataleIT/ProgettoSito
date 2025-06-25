@@ -140,7 +140,11 @@ button {
       height: 500px;
       width: 100%;
 }
-#selected-location { margin-top: 10px; font-weight: bold; }
+#selected-location { 
+    margin-top: 10px;
+    font-weight: bold;
+    min-width: 27%; 
+}
 button:hover {
     transition: background-color 0.3s;
     transition: box-shadow 0.2s;
