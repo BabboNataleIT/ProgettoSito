@@ -230,7 +230,7 @@ $(document).ready(function () {
                 map.removeLayer(tileLayer);
             }
             tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
+                //attribution: '© OpenStreetMap contributors'
             }).addTo(map);
 
             const locations = [
@@ -253,7 +253,6 @@ $(document).ready(function () {
                     marker.on('mouseleave',function(){
                         this.attr('style','border: none;');
                     });
-                    marker.riseOnHover(true);
                 interventionMarkers.push(marker);
             });
             const group = L.featureGroup(interventionMarkers);
