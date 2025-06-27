@@ -16,10 +16,10 @@ $(document).ready(function () {
         popupAnchor: [0, -32]      // point from which the popup should open relative to the iconAnchor
     });
 
-    const params = new URLSearchParams(window.location.search);
+    /*const params = new URLSearchParams(window.location.search);
     const serial = params.get('serial');
     const type = params.get('type');
-    prefillForm({ serial, type });
+    prefillForm({ serial, type });*/
 
     let selectedLgv = "";
     let selectedEquipment = "";
