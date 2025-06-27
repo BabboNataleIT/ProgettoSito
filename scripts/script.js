@@ -15,27 +15,11 @@ $(document).ready(function () {
         iconAnchor: [16, 32],      // point of the icon which will correspond to marker's location
         popupAnchor: [0, -32]      // point from which the popup should open relative to the iconAnchor
     });
-    const sheetID = '1FLBwUDrw5AXUsozizV5GGanMQyqEWVKYP3Vlj';
-    const baseURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
-    // 1. Carica dati da Google Sheets (può essere pubblico o da Apps Script)
-    fetch(baseURL)
-        .then(res => res.json())
-        .then(data => {
-            // Salva il primo record nel localStorage
-            const userData = data[0]; // puoi anche filtrare o cercare per ID/email/etc.
-            localStorage.setItem("prefillData", JSON.stringify(userData));
-            prefillForm(userData); // opzionale: subito riempi la form
-        });
-    const stored = localStorage.getItem("prefillData");
-    if (stored) {
-        const data = JSON.parse(stored);
-        prefillForm(data);
-    }
 
-    /*const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search);
     const serial = params.get('serial');
     const type = params.get('type');
-    prefillForm({ serial, type });*/
+    prefillForm({ serial, type });
 
     let selectedLgv = "";
     let selectedEquipment = "";
