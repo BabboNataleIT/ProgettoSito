@@ -356,7 +356,7 @@ $(document).ready(function () {
 
         // Per ora, simuliamo il successo e reindirizziamo
         alert('Data and files prepared for submission (client-side only). Check console for details.');
-        //window.location.href = 'submit-form.html'; // Reindirizza comunque per il tuo flusso attuale
+        window.location.href = 'submit-form.html'; // Reindirizza comunque per il tuo flusso attuale
     });
 
     // Reset completo del modulo
@@ -453,7 +453,7 @@ $(document).ready(function () {
     }
     function prefillForm(data) {
         if (serial) {
-            $('#serialNumber').val(serial);
+            $('#serialNumber').text(serial);
         }
         if (type) {
             if (type.includes('lgv') || type.includes('agv')) {
