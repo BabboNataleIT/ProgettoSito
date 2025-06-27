@@ -4,8 +4,8 @@ $(document).ready(function () {
     $("#type").text(localStorage.getItem("type"));
     $("#serialNumber").text(localStorage.getItem("serial"));
     $("#necessity").text(localStorage.getItem("necessity"));
-    location = localStorage.getItem("selectedLocation")
-    if(!location=== ""){
+    let location = localStorage.getItem("selectedLocation")
+    if(location !== ""){
         $("#location").text(location);
     }
     console.log(localStorage.getItem("customerName"));
